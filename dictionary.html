@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Dictionary</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="badge">Exercise 2 · Dictionary</span>
+        <h1>AI / CNN Dictionary</h1>
+        <p>
+          A glossary of AI, CNN, training, testing, and browser-storage
+          concepts.
+        </p>
+      </div>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Model Page</a>
+        <a class="active" href="dictionary.html">AI Dictionary</a>
+      </nav>
+    </header>
+
+    <main class="page dictionary-page">
+      <section class="panel dictionary-panel">
+        <div class="dictionary-toolbar">
+          <span id="termCount" class="status-pill">0 terms</span>
+        </div>
+
+        <label class="search-label" for="searchInput">Search term</label>
+        <input
+          id="searchInput"
+          class="search-input"
+          type="search"
+          placeholder="Search CNN, ReLU, Epoch, LocalStorage..."
+        />
+
+        <div id="dictionaryList" class="dictionary-list"></div>
+      </section>
+    </main>
+
+    <script src="js/dictionary.js"></script>
+  </body>
+</html>

@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CNN Shape Classifier</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="badge">Exercise 2 · CNN</span>
+        <h1>CNN Shape Classifier</h1>
+        <p>
+          Draw a circle, square, or triangle. The model can predict, train,
+          <br />
+          test, reset, and save its weights in LocalStorage.
+        </p>
+      </div>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a class="active" href="index.html">Model Page</a>
+        <a href="dictionary.html">AI Dictionary</a>
+      </nav>
+    </header>
+
+    <main class="page">
+      <section class="main-grid">
+        <section class="panel draw-panel" aria-labelledby="draw-title">
+          <div class="panel-title">
+            <div>
+              <p class="step-label">Step 1</p>
+              <h2 id="draw-title">Draw a shape</h2>
+            </div>
+            <span id="storageStatus" class="status-pill"
+              >LocalStorage: checking…</span
+            >
+          </div>
+
+          <p class="small-note">
+            Draw one class only: <strong>Circle</strong>,
+            <strong>Square</strong>, or <strong>Triangle</strong>. The drawing
+            is converted to a 28×28 image before prediction.
+          </p>
+
+          <canvas
+            id="drawingCanvas"
+            width="280"
+            height="280"
+            aria-label="Drawing canvas"
+          ></canvas>
+
+          <div class="button-row">
+            <button id="clearCanvasBtn" type="button" class="secondary">
+              Clear Canvas
+            </button>
+            <button id="predictBtn" type="button" class="primary">
+              Predict Drawing
+            </button>
+          </div>
+        </section>
+
+        <section class="panel controls-panel" aria-labelledby="controls-title">
+          <div class="panel-title">
+            <div>
+              <p class="step-label">Step 2</p>
+              <h2 id="controls-title">Model controls</h2>
+            </div>
+          </div>
+
+          <p class="small-note">
+            Control the model structure and training settings required by the
+            exercise.
+          </p>
+
+          <div class="control-grid">
+            <label>
+              <span>Convolution layers</span>
+              <input
+                id="convLayersInput"
+                type="number"
+                min="1"
+                max="3"
+                step="1"
+                value="2"
+              />
+            </label>
+
+            <label>
+              <span>Filters per layer</span>
+              <input
+                id="filtersInput"
+                type="number"
+                min="2"
+                max="16"
+                step="1"
+                value="12"
+              />
+            </label>
+
+            <label>
+              <span>Filter size</span>
+              <select id="filterSizeInput">
+                <option value="3" selected>3×3</option>
+                <option value="5">5×5</option>
+                <option value="7">7×7</option>
+              </select>
+            </label>
+
+            <label>
+              <span>Dense neurons</span>
+              <input
+                id="hiddenInput"
+                type="number"
+                min="4"
+                max="128"
+                step="1"
+                value="64"
+              />
+            </label>
+
+            <label>
+              <span>Learning rate</span>
+              <input
+                id="learningRateInput"
+                type="number"
+                min="0.0001"
+                max="0.1"
+                step="0.0001"
+                value="0.001"
+              />
+            </label>
+
+            <label>
+              <span>Epochs</span>
+              <input
+                id="epochsInput"
+                type="number"
+                min="1"
+                max="200"
+                step="1"
+                value="120"
+              />
+            </label>
+          </div>
+
+          <div class="button-grid">
+            <button id="trainBtn" type="button" class="primary">
+              Train / Fine-Tune
+            </button>
+            <button id="testBtn" type="button" class="secondary">
+              Test Synthetic Data
+            </button>
+            <button id="freshModelBtn" type="button" class="secondary">
+              Fresh Random Model
+            </button>
+            <button id="resetBtn" type="button" class="danger">
+              Reset to Trained Weights
+            </button>
+          </div>
+
+          <div id="modelInfo" class="info-box">
+            Model info will appear here.
+          </div>
+        </section>
+
+        <section class="panel results-panel" aria-labelledby="results-title">
+          <div class="panel-title">
+            <div>
+              <p class="step-label">Step 3</p>
+              <h2 id="results-title">Results</h2>
+            </div>
+          </div>
+
+          <div id="predictionResult" class="prediction-box">
+            Prediction: draw a shape and click Predict.
+          </div>
+
+          <div id="probabilityBars" class="bars"></div>
+
+          <h3>Training / testing log</h3>
+          <pre id="trainingLog" class="log">Ready.</pre>
+        </section>
+      </section>
+    </main>
+
+    <script src="js/pretrained-model.js"></script>
+    <script src="js/cnn.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
